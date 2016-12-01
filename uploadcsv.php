@@ -1,7 +1,7 @@
 <?php
 
 //database connection details
-$connect = mysqli_connect("localhost","root","fifi");
+$connect = mysqli_connect("localhost","root","[PASSSWORD]");
 
 if (!$connect) {
  die('Could not connect to MySQL: ' . mysql_error());
@@ -11,10 +11,10 @@ if (!$connect) {
 $selectDB =mysqli_select_db($connect,"csv_upload");
 
 // path where your CSV file is located
-define('CSV_PATH','/home/fifi/Downloads/');
+define('CSV_PATH','path/to/file');
 
 // Name of your CSV file
-$csv_file = CSV_PATH . "dummyCompanyData2.csv"; 
+$csv_file = CSV_PATH . "dummydata.csv"; 
 
 
 if (($file_handler = fopen($csv_file, "r")) !== FALSE) {
@@ -25,17 +25,16 @@ if (($file_handler = fopen($csv_file, "r")) !== FALSE) {
           $col[$count] = $data[$count];
         }
 
- $name 			= $col[0];
- $legal_name 	= $col[1];
- $address 		= $col[2];
- $city 			= $col[3];
- $state 		= $col[4];
- $phone			= $col[5];
- $email 		= $col[6];
+ $variableName1 		= $col[0];
+ $variableName2 		= $col[1];
+ $variableName3 		= $col[2];
+ $variableName4 		= $col[3];
+ $variableName5 		= $col[4];
+
  
    
 // SQL Query to insert data into DataBase
-$query = "INSERT INTO companies2(name, legal_name, address, city, state, phone, email ) VALUES('".$name."','".$legal_name."','".$address."','".$city."','".$state."','".$phone."','".$email."')";
+$query = "INSERT INTO tableName(col1, col2, col3, col4, col5 ) VALUES('".$variableName1."','".$variableName2."','".$variableName3."','".$variableName4."','".$variableName5."')";
 $s     = mysqli_query($connect, $query);
 
  }
